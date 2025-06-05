@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced War Horse Quiz - Comprehension & Essay Writing</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #0056b3; /* A deep blue */
+            margin-bottom: 20px;
+        }
+        .instructions {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 25px;
+            border-left: 5px solid #0056b3;
+        }
+        .question-block {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: #fdfdff;
+            border: 1px solid #dee2e6;
+            border-left: 5px solid #17a2b8; /* Info Blue/Teal */
+            border-radius: 8px;
+        }
+        .question-text {
+            font-weight: 600; /* Semibold */
+            font-size: 1.1em;
+            margin-bottom: 12px;
+            color: #495057;
+        }
+        textarea.user-answer {
+            width: calc(100% - 22px); /* Adjust for padding */
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            min-height: 100px;
+            font-size: 1em;
+            line-height: 1.5;
+        }
+        button.eval-button {
+            display: inline-block;
+            padding: 10px 18px;
+            background-color: #28a745; /* Success Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.95em;
+            margin-top: 12px;
+            transition: background-color 0.2s ease-in-out;
+        }
+        button.eval-button:hover {
+            background-color: #218838;
+        }
+        .feedback-area {
+            margin-top: 18px;
+            padding: 18px;
+            background-color: #e6f7ff; /* Light Info Blue */
+            border: 1px solid #b3e0ff;
+            border-radius: 5px;
+        }
+        .feedback-area h4 {
+            margin-top: 0;
+            color: #007bff; /* Primary Blue */
+            font-size: 1.05em;
+        }
+        .keywords-list {
+            list-style-type: circle;
+            margin-left: 20px;
+            padding-left: 0;
+        }
+        .keywords-list li {
+            margin-bottom: 3px;
+        }
+        .model-answer-text {
+            font-style: italic;
+            color: #5a6268; /* Darker gray for model answer */
+            line-height: 1.6;
+        }
+        .evaluation-note {
+            font-weight: bold;
+            margin-top: 12px;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: #ffeeba; /* Warning Yellow */
+            border: 1px solid #ffc107;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Advanced Quiz: War Horse (Chapters 1-21)</h1>
+        <div class="instructions">
+            <p><strong>Instructions:</strong> For each question, please write a detailed answer in your own words, based on the information from the text (Chapters 1-21 of "War Horse"). After writing your response, click "Evaluate Answer." You will then see:</p>
+            <ul>
+                <li>Key concepts or keywords that a comprehensive answer might include.</li>
+                <li>A model answer for you to compare against your own.</li>
+                <li>An evaluation note indicating how many key concepts your answer touched upon.</li>
+            </ul>
+            <p>The main goal is to help you develop your understanding and essay-writing skills by reflecting on your response in comparison to the model answer.</p>
+        </div>
+
+        <div id="quiz-container">
+            <!-- Questions will be dynamically generated here by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        const questionsData = [
+            // --- Author's Note & Chapter 1 ---
+            {
+                id: 1,
+                question: "Describe the horse depicted in the small, dusty painting in the Village Hall. What were its specific colors and markings as detailed in the Author's Note? [cite: 1, 2]",
+                keywords: ["splendid", "red bay", "remarkable", "white cross", "emblazoned", "forehead", "four", "perfectly matched", "white socks"],
+                modelAnswer: "The painting in the Village Hall depicted a 'splendid red bay' horse[cite: 2]. It had a 'remarkable white cross emblazoned on his forehead' and 'four perfectly matched white socks'[cite: 2]. The Author's Note describes it as hanging below a clock, a 'small dusty painting'[cite: 1]."
+            },
+            {
+                id: 2,
+                question: "Explain Joey's age and his emotional state when he was first sold and separated from his mother. How did this event impact him throughout his life? [cite: 12, 13, 14]",
+                keywords: ["not yet six months", "gangling", "leggy colt", "terror", "stayed with me all my life", "terrible hubbub", "auction ring", "never to see her again"],
+                modelAnswer: "Joey was 'not yet six months old' when he was sold and separated from his mother; he described himself as a 'gangling, leggy colt who had never been further than a few feet from his mother'[cite: 13]. The experience was deeply traumatic, and he states, 'The terror of it stayed with me all my life'[cite: 12]. He was parted from her in the 'terrible hubbub of the auction ring' and was never to see her again[cite: 14]."
+            },
+            {
+                id: 3,
+                question: "After being bought by Albert's father, who were the first individuals or beings to show Joey any form of kindness or sympathy? Describe these initial interactions. [cite: 42, 45, 48, 49]",
+                keywords: ["old mare", "zoey", "nicker gently", "glimpse of kindness", "sympathy", "albert", "young boy", "beaming smile", "rub him down"],
+                modelAnswer: "The first glimpse of kindness Joey received was from the old mare, Zoey, who was in the stable next to his. As she went in, 'she stopped to look over my door and nickered gently,' which cooled Joey's panic and soothed his spirit[cite: 42, 45]. Shortly after, Albert, a young boy, appeared at Joey's door. He looked at Joey for a long time, 'considering me carefully before his face broke into a beaming smile'[cite: 48]. Albert then expressed concern for Joey being wet and stated his intention to rub him down[cite: 50, 51]."
+            },
+            {
+                id: 4,
+                question: "According to Albert's mother's explanation to Albert, what was the primary reason Albert's father purchased Joey at the auction? [cite: 66, 67]",
+                keywords: ["farmer easton", "bidding", "deny him", "barney", "fencing", "fit of pique", "regretted it"], // From later context in Ch 3 [cite: 224] for regret
+                modelAnswer: "Albert's mother explained that Farmer Easton was bidding for the horse[cite: 66]. She imagined that Albert's father bought Joey 'just to deny him' Easton, especially after a previous argument ('barney') over fencing[cite: 66, 67]. She also later mentioned he bought him 'in a fit of pique and has regretted it ever since'[cite: 224]."
+            },
+            {
+                id: 5,
+                question: "When Albert's father threatened to sell Joey if he wasn't ploughing within a week, what did Albert resolve to do? How did he plan to achieve this, and what did he communicate to Joey? [cite: 135, 145, 146, 147]",
+                keywords: ["train joey", "plough", "one week", "old zoey", "hard work", "thoroughbred", "beneath you"],
+                modelAnswer: "Albert resolved to train Joey to plough within the week[cite: 135]. He told Joey, 'We have one week Joey, only one week to get you ploughing'[cite: 145]. He explained that he and 'old Zoey' would train him together, acknowledging it would be 'divilish hard work,' especially as Joey, with his thoroughbred lineage, might think such work was 'beneath' him[cite: 146, 147]."
+            },
+            {
+                id: 6,
+                question: "Identify and describe the officer who purchased Joey from Albert's father for the army. What were his notable characteristics upon their first meeting? [cite: 264, 270]",
+                keywords: ["captain james nicholls", "officer", "tall", "elegant", "jodhpurs", "sam brown belt", "silver sword", "kind hand", "kind voice"],
+                modelAnswer: "The officer who bought Joey was Captain James Nicholls[cite: 7, 265]. He was described as 'tall and elegant in his jodhpurs and Sam Brown belt, with a silver sword at his side'[cite: 264]. When he examined Joey, both his hand and his voice were 'kind,' and Joey did not shrink away from him[cite: 270]."
+            },
+            {
+                id: 7,
+                question: "What significant promise did Captain Nicholls make to Albert concerning Joey's welfare after Albert was told he was too young to enlist? [cite: 305, 312]",
+                keywords: ["take good care", "until you're ready", "join us", "personal care", "promise", "look after him"],
+                modelAnswer: "After Albert was told he was too young to enlist, Captain Nicholls promised him, 'don't you worry about your Joey. I shall take good care of him until you're ready to join us'[cite: 305]. He further reinforced this by saying, 'I'll take personal care of him, and that's a promise'[cite: 312]."
+            },
+            {
+                id: 8,
+                question: "Describe Corporal Samuel Perkins, the ex-jockey responsible for Joey's initial cavalry training. What was his demeanor, and how did Joey perceive his methods? [cite: 321, 322, 325, 326]",
+                keywords: ["corporal samuel perkins", "hard", "gritty little man", "ex-jockey", "power he could exert", "feared", "rode hard", "heavy-handed", "whip and spurs not just for show", "respect based on fear"],
+                modelAnswer: "Corporal Samuel Perkins was 'a hard, gritty little man, an ex-jockey whose only pleasure in life seemed to be the power he could exert over a horse'[cite: 322]. He was universally feared[cite: 323]. He 'rode hard and heavy-handed,' and with him, 'the whip and the spurs were not just for show'[cite: 325]. Joey disliked him more than anything in his new life[cite: 321], though he felt a degree of respect for him, this was 'based on fear and not love'[cite: 326]."
+            },
+            {
+                id: 9,
+                question: "What activity did Captain Nicholls frequently engage in during his evening visits to Joey's stable? What was his stated intention for the artwork he created? [cite: 331, 332, 335]",
+                keywords: ["sketch-book", "draw me", "talked", "paint a picture", "send it off", "friend albert", "promised i would look after you"],
+                modelAnswer: "During his evening visits, Captain Nicholls would sit with a 'sketch-book on his knees' and would 'draw me as he talked'[cite: 331]. He told Joey he was making sketches to eventually paint a picture of him[cite: 332]. His intention was to 'send it off to your friend Albert, just so that he'll know that I meant what I said when I promised I would look after you'[cite: 335]."
+            },
+            {
+                id: 10,
+                question: "Identify Joey's closest horse companion during his cavalry service and the journey to France. How did this companion specifically provide comfort to Joey during the difficult sea crossing? [cite: 429]",
+                keywords: ["topthorn", "calm", "remained calm throughout", "lean his great head", "rest on his neck", "obliterate sinking surge", "comfort"],
+                modelAnswer: "Topthorn became Joey's closest horse companion. During the stormy sea crossing to France, when many horses were overwrought, Joey's comfort 'came from Topthorn who remained calm throughout'[cite: 429]. Topthorn 'would lean his great head over the stall and let me rest on his neck while I tried to obliterate from my mind the sinking surge of the ship'[cite: 429]."
+            },
+            {
+                id: 11,
+                question: "Recount the circumstances of Captain Nicholls' death. When and how did it occur, and what was Joey doing at that moment? [cite: 475, 483, 487]",
+                keywords: ["first battle", "galloped down on the enemy", "no rider", "no weight on my back", "alone", "died leading that charge", "finished it for him"],
+                modelAnswer: "Captain Nicholls died in their first battle, leading a cavalry charge[cite: 471, 487]. As they galloped towards the enemy, Joey 'saw the grey soldiers ahead of us raise their rifles and heard the death rattle of a machine-gun, and then quite suddenly I found that I had no rider, that I had no weight on my back any more'[cite: 475]. Captain Stewart later told Joey that Captain Nicholls 'died leading that charge and you finished it for him'[cite: 487]. Joey never saw him again[cite: 483]."
+            },
+            {
+                id: 12,
+                question: "Who became Joey's new rider following Captain Nicholls' death? Describe this individual's initial abilities and characteristics as a horseman. [cite: 497, 505, 506, 507]",
+                keywords: ["trooper warren", "pink-faced", "young", "not a good horseman", "tense", "rode me heavy", "sack of potatoes", "unevenly", "tight a rein"],
+                modelAnswer: "Trooper Warren became Joey's new rider[cite: 497]. He was 'pink-faced and young' and reminded Joey of Albert[cite: 494]. Joey could tell 'the minute he mounted me' that Trooper Warren 'was not a good horseman'[cite: 505]. He was 'always tense and rode me heavy in the saddle like a sack of potatoes,' rocked unevenly, and rode with 'too tight a rein'[cite: 506, 509]."
+            },
+            {
+                id: 13,
+                question: "What unique distinction or 'award' did Joey and Topthorn receive from a German soldier after their perilous work pulling an ambulance cart through a heavy barrage? [cite: 702, 703, 705]",
+                keywords: ["iron cross", "muddied ribbon", "hung around my neck", "first english in this war to win"],
+                modelAnswer: "After pulling the ambulance cart through a devastating barrage, a wounded German soldier approached Joey, kissed him, and 'reached up and hung a muddied ribbon around my neck. There was an Iron Cross dangling on the end of it'[cite: 702, 703]. The soldier remarked, 'I bet you are the first English in this war to win an Iron Cross'[cite: 705]."
+            },
+            {
+                id: 14,
+                question: "Describe the two individuals on the French farm who provided dedicated care for Joey and Topthorn while the horses were serving the German field hospital. What was their bond with the horses like? [cite: 712, 714, 716, 718, 719]",
+                keywords: ["little girl", "emilie", "grandfather", "waiting by the stable door", "rubbed us down", "saw to our sores", "fed us", "groomed us", "led us about", "complete confidence", "chattering", "lavished us with her affection"],
+                modelAnswer: "A little girl named Emilie and her grandfather took dedicated care of Joey and Topthorn on their French farm[cite: 712, 714]. Emilie, in particular, formed a strong bond with them. They 'rubbed us down and saw to our sores and bruises. They fed us, watered us and groomed us'[cite: 715, 716]. Emilie, though 'a tiny, frail creature,' led them 'with complete confidence, chatting all the while' and 'lavished us with her affection'[cite: 718, 719]."
+            },
+            {
+                id: 15,
+                question: "What serious illness afflicted Emilie during one winter? How did her recovery manifest itself, particularly in relation to Joey and Topthorn? [cite: 748, 749, 765, 766]",
+                keywords: ["pneumonia", "german doctor", "woke up", "sat up", "first thing she said", "must get up", "got to get their mash ready", "cold and tired"],
+                modelAnswer: "Emilie suffered from pneumonia during the winter, and her grandfather feared she might not live[cite: 748, 749]. Her recovery was signaled when, on Christmas morning, 'my Emilie woke up at lunchtime, sat up she did, and do you know the first thing she said? [...] \"I must get up, got to get their mash ready for them when they come back. They'll be cold and tired,\" she said'[cite: 765, 766]. This concern for the horses indicated she was getting better."
+            },
+            {
+                id: 16,
+                question: "Explain Emilie's grandfather's reasoning for putting Joey and Topthorn to work on the farm after the German field hospital moved away. [cite: 789, 790, 792, 794, 795]",
+                keywords: ["like to work", "need to work", "go on living", "live as we have always lived", "food comes from the land", "must work the land", "want to live"],
+                modelAnswer: "When Emilie protested that he was working the horses too hard, her grandfather explained, 'They like to work. They need to work. And besides the only way for us to go on living, Emilie, is to go on like we did before'[cite: 789, 790]. He emphasized that 'our food comes from the land' and 'We must work the land if we want to live and these two must work it with us'[cite: 794, 795]."
+            },
+            {
+                id: 17,
+                question: "What was 'mad old Friedrich's' profession before the war, and where was his home? Why did other soldiers consider him 'mad,' and what was Friedrich's own explanation for his behavior? [cite: 933, 944, 946, 947, 948]",
+                keywords: ["butcher", "schleiden", "talked continuously to himself", "laughing and chortling", "private joke", "not in the slightest bit mad", "only sane man", "if he did not laugh he would cry"],
+                modelAnswer: "Before the war, 'mad old Friedrich' was a butcher in Schleiden[cite: 944, 947]. He was 'thought to be mad because he talked continuously to himself and even when he was not talking he was laughing and chortling at some private joke'[cite: 933]. Friedrich, however, confessed to Joey and Topthorn that he was 'not in the slightest bit mad' [cite: 946] but rather felt he was 'the only sane man in the regiment'[cite: 949]. He talked to himself because he felt no one else understood him, and he laughed because 'if he did not laugh he would cry'[cite: 948]."
+            },
+            {
+                id: 18,
+                question: "Describe the final moments leading to Topthorn's death. What were the physical signs of his distress, and what was the immediate cause of his collapse? How did Joey and Friedrich react? [cite: 991, 995, 997, 998, 999, 1001, 1002, 1003, 1005]",
+                keywords: ["wearily", "sluggishly", "breathing short and rasping", "stumbled to his knees", "did not get up", "slumped forward", "rolled over", "quite still", "heart failure", "nuzzle him", "frantic effort", "knew instinctively he was dead", "friedrich on his knees", "face heavy with sadness"],
+                modelAnswer: "As they climbed a steep hill, Joey noticed Topthorn 'moving rather wearily and sluggishly,' with his breathing 'suddenly short and rasping'[cite: 991, 995]. Nearing the trees, 'Topthorn stumbled to his knees and did not get up again'[cite: 995]. He lifted his head once in an appeal for help, then 'slumped forward on his face, rolled over and was quite still'[cite: 997, 998, 999]. The veterinary officer later pronounced it heart failure[cite: 1012]. Joey 'bent down to nuzzle him, pushing at his neck in a frantic effort to make him move,' though he 'knew instinctively that he was already dead'[cite: 1001, 1002]. Friedrich was 'down on his knees beside him,' his 'face heavy with sadness,' and quietly said, 'He's dead'[cite: 1003, 1005]."
+            },
+            {
+                id: 19,
+                question: "Shortly after Topthorn's death, what new and terrifying war machine did Joey encounter that caused him to bolt in extreme fear? Provide a brief description of this machine as Joey perceived it. [cite: 1035, 1037, 1038]",
+                keywords: ["tank", "motors", "terrifying rattle of steel", "great grey lumbering monster", "belched out smoke", "rocked down the hillside"],
+                modelAnswer: "Shortly after Topthorn's death, Joey heard 'the whining sound of motors accompanied by a terrifying rattle of steel'[cite: 1035]. The first tank he ever saw 'came over the rise of the hill... a great grey lumbering monster that belched out smoke from behind as it rocked down the hillside towards me'[cite: 1037]. This sight 'tore me at last from Topthorn's side and sent me bolting down the hill'[cite: 1038]."
+            },
+            {
+                id: 20,
+                question: "Explain in detail how the 'ownership' or rescue of Joey was decided when he was trapped in 'no man's land.' Who were the two soldiers involved, and what was the exact procedure they followed? [cite: 1103, 1106, 1107, 1108, 1114, 1121, 1133, 1149, 1150, 1153, 1154, 1155, 1156]",
+                keywords: ["german soldier", "welshman", "khaki", "white flag", "coin", "toss", "head or tail", "cricket", "kaiser", "horse is yours"],
+                modelAnswer: "When Joey was in no man's land, a German soldier waving a white flag came through the wire towards him[cite: 1103, 1108]. Soon after, a small man in khaki (a Welshman) also came out with a white handkerchief[cite: 1106, 1107]. The German soldier, who spoke some English, proposed they decide ownership by chance to avoid anyone losing pride[cite: 1128, 1152]. He produced a coin and said he would toss it, and the Welshman could choose 'head or tail'[cite: 1149, 1150]. The German held the coin up for all to see, then spun it high[cite: 1153]. The Welshman called out 'Heads!'[cite: 1154]. The German picked up the coin and stated, 'That's the face of my Kaiser looking up at me out of the mud... So I am afraid you have won. The horse is yours'[cite: 1155, 1156]."
+            },
+            {
+                id: 21,
+                question: "Describe the first authoritative figure Joey encountered upon his arrival at the veterinary hospital. What were his prominent physical features, his apparent rank, and his initial reaction to Joey and the assembled soldiers? [cite: 1183, 1185, 1186, 1189, 1190, 1191, 1193, 1194, 1296]",
+                keywords: ["huge man", "booming voice", "heavy red face", "ginger moustache", "peaked cap", "three broad stripes", "sergeant", "Sergeant Thunder", "scruffiest", "dirtiest", "muddiest 'orse", "thundering disgrace", "impatient"],
+                modelAnswer: "Upon arrival at the veterinary hospital, a 'huge man' with a 'booming voice' strode towards Joey and the assembled soldiers[cite: 1183, 1185]. His 'heavy red face was half hidden by the shade of his peaked cap that almost touched his nose and by a ginger moustache that spread upwards from his lips to his ears'[cite: 1186]. He wore 'three broad stripes on his arm,' identifying him as a Sergeant (later known as Sergeant Thunder)[cite: 1191, 1296]. His initial reaction to Joey was one of disdain, calling him 'the scruffiest, dirtiest, muddiest 'orse I have ever seen' and a 'thundering disgrace'[cite: 1189, 1190]. He was impatient with the soldiers, ordering them back to their duties[cite: 1193, 1194]."
+            },
+            {
+                id: 22,
+                question: "What serious illness did Joey contract after being rescued from no man's land? Explain the common causes of this illness in a war setting as mentioned by Major Martin, and its initial symptoms in Joey. [cite: 1307, 1320, 1341, 1342, 1343]",
+                keywords: ["tetanus", "lock-jaw", "rusty barbed wire", "shrapnel wounds", "festered", "stiff as a board", "covered in sweat", "tail stuck out", "can't hardly move his head"],
+                modelAnswer: "Joey contracted tetanus, also known as 'lock-jaw'[cite: 1343]. Major Martin explained that they saw a lot of it in the war, often caused by wounds from 'confounded rusty barbed wire' or 'shrapnel wounds' where 'one little fragment left inside, one cut - that's all it takes' for the wound to fester[cite: 1342]. Joey's initial symptoms included leaving his mash, his back being 'as stiff as a board,' being 'covered in sweat,' his tail 'stuck out,' and being unable to 'hardly move his head'[cite: 1307, 1320, 1341]."
+            },
+            {
+                id: 23,
+                question: "Identify Albert's close friend in the Veterinary Corps. How did this friend die, and how did his death affect Albert? [cite: 1220, 1443, 1444, 1447, 1449, 1453, 1454, 1455, 1462, 1464]",
+                keywords: ["david", "killed", "stray shell", "fruit cart", "covent garden", "brother", "inconsolable", "no more singing", "no more whistling"],
+                modelAnswer: "Albert's close friend in the Veterinary Corps was David[cite: 1220, 1443]. David was killed by a 'stray shell' along with two horses he was hauling[cite: 1444]. Before the war, David had a 'fruit cart in London, outside Covent Garden'[cite: 1447]. His death deeply affected Albert, who described David as being 'like a brother to me'[cite: 1449]. Albert became 'quite inconsolable'; there was 'no more singing, no more whistling,' and even news of the war ending brought 'no light back to his eyes'[cite: 1454, 1455, 1462, 1464]."
+            },
+            {
+                id: 24,
+                question: "What was the distressing news Major Martin delivered to the men at the veterinary hospital after the war had officially ended regarding the future of the army horses? [cite: 1480, 1485, 1486, 1487]",
+                keywords: ["sell off", "army's horses", "france", "sick", "not considered worthwhile to transport", "horse sale", "auction", "staying in france"],
+                modelAnswer: "After the war ended, Major Martin announced that 'a decision has been taken to sell off many of the army's horses here in France'[cite: 1485]. He stated that the horses at the hospital were 'either sick or have been sick' and it was 'not considered worthwhile to transport them back home'[cite: 1486, 1487]. His orders were to 'hold a horse sale here in this courtyard tomorrow morning' by auction, meaning the horses would be 'staying in France'[cite: 1487, 1480]."
+            },
+            {
+                id: 25,
+                question: "During the auction of the army horses, who made a significant bid for Joey, declaring his intention to pay a very high price if necessary? How much did this person initially bid, and what was their stated connection to Joey? [cite: 1557, 1558, 1561, 1562, 1564]",
+                keywords: ["emilie's grandfather", "white haired old man", "twenty-eight english pounds", "one hundred english pounds if i must", "my emilie's horse", "hers by right"],
+                modelAnswer: "During the auction, a 'white haired old man leaning heavily on his stick' made a significant bid for Joey[cite: 1557]. This was Emilie's grandfather[cite: 1564]. He initially bid 'twenty-eight of your English pounds'[cite: 1558]. He declared his resolute intention by stating, 'For this horse I will pay one hundred English pounds if I must do. No one will have this horse except me. This is my Emilie's horse. It is hers by right'[cite: 1561, 1562]."
+            },
+            {
+                id: 26,
+                question: "For what price, and under what conditions, did Emilie's grandfather ultimately agree to sell Joey to Albert? [cite: 1633, 1634, 1635]",
+                keywords: ["one english penny", "solemn promise", "always love this horse", "emilie did", "care for him", "end of his days", "tell everyone about my emilie"],
+                modelAnswer: "Emilie's grandfather agreed to sell Joey to Albert for 'one English penny'[cite: 1633]. This was contingent on a 'solemn promise' from Albert that he would 'always love this horse as much as my Emilie did and that you will care for him until the end of his days'[cite: 1633]. Furthermore, he asked Albert to 'tell everyone about my Emilie and about how she looked after your Joey and the great black horse when they came to live with us,' so that Emilie would 'live on in people's hearts'[cite: 1634, 1635]."
+            },
+            {
+                id: 27,
+                question: "What specific promises did Albert have to make to Emilie's grandfather, beyond the monetary exchange, to secure Joey's return with him? [cite: 1633, 1634, 1635]",
+                keywords: ["always love this horse", "as much as my emilie did", "care for him until the end of his days", "tell everyone about my emilie", "how she looked after your joey", "live on in people's hearts"],
+                modelAnswer: "Beyond the one English penny, Albert had to make a solemn promise to Emilie's grandfather[cite: 1633]. The conditions were: first, 'that you will always love this horse as much as my Emilie did'[cite: 1633]; second, 'that you will care for him until the end of his days'[cite: 1633]; and third, 'I want you to tell everyone about my Emilie and about how she looked after your Joey and the great black horse when they came to live with us'[cite: 1634]. The grandfather wanted Emilie to 'live on in people's hearts'[cite: 1635]."
+            },
+            {
+                id: 28,
+                question: "Who did Albert marry upon his return home after the war? Describe Joey's perception of his relationship with Albert's new wife. [cite: 1653, 1654, 1655]",
+                keywords: ["maisie cobbledick", "never took to me", "nor i to her", "mutual jealousy"],
+                modelAnswer: "Upon his return home, Albert married 'his Maisie Cobbledick as he said he would'[cite: 1653]. Joey perceived that Maisie 'never took to me, nor I to her for that matter'[cite: 1654]. He mused, 'Perhaps it was a feeling of mutual jealousy'[cite: 1655]."
+            },
+            {
+                id: 29,
+                question: "Where was the painting of a horse resembling Joey located, as mentioned at the beginning of the book? Describe the scene and the painting itself. [cite: 1, 2]",
+                keywords: ["village hall", "old school", "clock", "one minute past ten", "small dusty painting", "splendid red bay", "white cross", "four white socks"],
+                modelAnswer: "The painting of a horse resembling Joey was located 'IN THE OLD SCHOOL THEY USE NOW FOR THE Village Hall, below the clock that has stood always at one minute past ten'[cite: 1]. It was described as 'a small dusty painting of a horse'[cite: 1]. The horse in the painting was 'a splendid red bay with a remarkable white cross emblazoned on his forehead and with four perfectly matched white socks'[cite: 2]."
+            },
+            {
+                id: 30,
+                question: "What distinctive call did Albert use to summon Joey, a call that Joey stated he 'never refused and I would never forget'? [cite: 94]",
+                keywords: ["whistle", "imitated", "stuttering call", "owl", "call i never refused", "never forget"],
+                modelAnswer: "Albert used a distinctive whistle to call Joey. This whistle 'imitated the stuttering call of an owl'[cite: 94]. Joey described it as 'a call I never refused and I would never forget'[cite: 94]."
+            },
+            {
+                id: 31,
+                question: "Based on Joey's earliest memories, describe his mother's characteristics as a working animal. Was she young and of thoroughbred lineage, or different? [cite: 15]",
+                keywords: ["fine working farm horse", "getting on in years", "strength", "stamina", "irish draught", "not thoroughbred"],
+                modelAnswer: "Joey remembered his mother as 'a fine working farm horse, getting on in years but with all the strength and stamina of an Irish draught horse quite evident in her fore and hind quarters'[cite: 15]. This indicates she was not young, nor primarily of thoroughbred lineage, but rather a strong, older working horse."
+            },
+            {
+                id: 32,
+                question: "How old was Albert when Joey was first brought to the farm? Explain his initial reaction and plans for Joey. [cite: 59, 60]",
+                keywords: ["barely past thirteen", "thirteen", "grand", "red-bay", "white cross", "ride this horse", "not be a horse to touch him"],
+                modelAnswer: "Albert was 'barely past thirteen' when Joey first came to the farm[cite: 60]. His initial reaction was one of excitement and admiration, exclaiming, 'Oh, isn’t he grand, Mother?' and noting his red-bay color and perfect white cross. He immediately declared, 'I shall ride this horse when he’s ready. I shall ride him everywhere and there won’t be a horse to touch him'[cite: 59]."
+            },
+            {
+                id: 33,
+                question: "Describe the outcome of the bet Albert's father made regarding Joey's ability to learn to plough. Did he win the bet, and what were the consequences for Joey? [cite: 158, 161, 166]",
+                keywords: ["won his bet", "finished the field", "forget all about the incident", "could stay on", "proud of you"],
+                modelAnswer: "Albert's father did win the bet. After a week of intensive training by Albert, with Zoey's help, Joey learned to plough effectively[cite: 158, 161]. Albert later revealed, 'Father's won his bet and he told me at breakfast that if we finished the field today he'd forget all about the incident, and that you could stay on, Joey'[cite: 166]. Thus, Joey was allowed to remain on the farm."
+            },
+            {
+                id: 34,
+                question: "What were Captain Nicholls' views on the nature of the upcoming war and the role of cavalry, especially in contrast to the opinions of others in the Mess? Explain his concerns. [cite: 337, 338, 339, 340, 341, 342]",
+                keywords: ["doubts", "machine-guns", "artillery", "wipe out an entire squadron", "light brigade at balaclava", "not short war", "nasty", "defeatist"],
+                modelAnswer: "Captain Nicholls had serious doubts about the prevailing optimism regarding the war and the role of cavalry, unlike many others in the Mess who thought cavalry would 'smash through' the enemy[cite: 338, 339]. He was concerned about new weaponry, stating, 'None of them in there seem to have heard of machine-guns and artillery'[cite: 340]. He believed 'one machine-gun operated right could wipe out an entire squadron of the best cavalry' and recalled the fate of the Light Brigade at Balaclava[cite: 341, 342]. He feared the war would be 'nasty, very nasty indeed'[cite: 337]."
+            },
+            {
+                id: 35,
+                question: "Discuss Joey's experience and feelings about his cavalry training under Corporal Samuel Perkins. Was it a positive experience for him? [cite: 318, 320, 321, 327]",
+                keywords: ["disliked", "resented deeply", "tight disciplines", "hard hot hours", "uncomfortable cumbersome weymouth", "infuriated", "anger and unhappiness", "tried to throw him off"],
+                modelAnswer: "Joey's training under Corporal Samuel Perkins was not a positive experience; in fact, 'it was my rider that I disliked more than anything in my new life'[cite: 321]. Joey 'resented deeply the tight disciplines of the riding school' and the 'hard hot hours'[cite: 318]. He found the Weymouth bit 'uncomfortable, cumbersome' and it 'infuriated me beyond belief'[cite: 320]. In his 'anger and unhappiness,' Joey 'tried several times to throw him off but never succeeded'[cite: 327]."
+            },
+            {
+                id: 36,
+                question: "Compare Topthorn and Joey in terms of physical stature and perceived strength when they first met. Was Topthorn an inferior horse? [cite: 414, 415]",
+                keywords: ["topthorn", "half a hand or more higher", "huge sleek horse", "majestic dignity", "challenge me for strength", "not inferior"],
+                modelAnswer: "When Joey first met Topthorn, Topthorn was physically more imposing. He was 'half a hand or more higher than me, a huge sleek horse that held his head with majestic dignity'[cite: 414]. Joey felt Topthorn 'could challenge me for strength'[cite: 415], indicating Topthorn was certainly not an inferior horse; in fact, he was a formidable and impressive stallion."
+            },
+            {
+                id: 37,
+                question: "Evaluate Trooper Warren's skills as a horseman when he first became Joey's rider. Was he an experienced and confident rider from the outset? [cite: 505, 506, 507, 508, 509]",
+                keywords: ["not a good horseman", "tense", "rode me heavy", "sack of potatoes", "rocked unevenly", "tight a rein", "neither experience nor confidence"],
+                modelAnswer: "Trooper Warren was not an experienced or confident horseman when he first became Joey's rider[cite: 505]. Joey states, 'He was always tense and rode me heavy in the saddle like a sack of potatoes'[cite: 506]. He also 'rocked unevenly in the saddle and rode me always on too tight a rein'[cite: 508, 509]. He had 'neither the experience and confidence of Corporal Samuel Perkins nor the finesse and sensitivity of Captain Nicholls'[cite: 507]."
+            },
+            {
+                id: 38,
+                question: "Were Joey and Topthorn captured by the Germans during their very first battle engagement in France? Explain the context of their capture. [cite: 475, Chapter 8]",
+                keywords: ["not first battle", "second major charge described", "captain stewart", "trooper warren", "surrounded", "empty trenches", "hidden wire", "counter-attack"],
+                modelAnswer: "No, Joey and Topthorn were not captured in their very first battle (where Captain Nicholls died)[cite: 475]. Their capture occurred during a subsequent major charge described in Chapter 8. After Captain Nicholls' death, Joey was ridden by Trooper Warren, and Topthorn by Captain Stewart. In this later engagement, after passing through empty enemy trenches and encountering hidden wire, the remnants of their squadron, including Joey and Topthorn with their riders, were surrounded by German soldiers during a counter-attack and forced to surrender."
+            },
+            {
+                id: 39,
+                question: "What was the initial intention of the tall German officer, Herr Hauptmann, for Joey and Topthorn after their capture? Did he plan to use them for pulling carts from the start? [cite: 642, 643]",
+                keywords: ["lancer regiment", "regiment of lancers", "splendid creatures", "fine british cavalry horses", "proud to have", "not for carts initially"],
+                modelAnswer: "Initially, the tall German officer, Herr Hauptmann, did not intend for Joey and Topthorn to pull carts. He greatly admired them as cavalry horses, stating, 'Any of our horse regiments, my own Regiment of Lancers indeed, would be proud, indeed overwhelmed to have such splendid creatures in their ranks'[cite: 643]. He was indignant at the doctor's suggestion of using them for ambulance carts, exclaiming, 'Doctor, you cannot put fine British cavalry horses to pulling carts!'[cite: 642]."
+            },
+            {
+                id: 40,
+                question: "What tragic fate befell Emilie's parents? How and when did this occur in relation to the war? [cite: 743, 744]",
+                keywords: ["killed", "one shell", "a week after the war began", "father and mother"],
+                modelAnswer: "Emilie's parents were killed by 'One shell' just 'a week after the war began'[cite: 743, 744]. Her grandfather recounted this tragedy, explaining how Emilie prayed for her dead father and mother every night."
+            },
+            {
+                id: 41,
+                question: "How did Emilie's grandfather feel about the German artillery unit taking Joey and Topthorn from their farm? Was he compliant and happy with this development? [cite: 849]",
+                keywords: ["cannot take them", "cried", "what can i do", "how could i stop them", "shrugged his shoulders sadly", "unwillingly", "not happy", "not compliant"],
+                modelAnswer: "Emilie's grandfather was not happy or compliant when the German artillery unit came to take Joey and Topthorn. When Emilie cried, 'Don't let them, Grandpapa,' he 'shrugged his shoulders sadly' and said, 'My child, what can I do? How could I stop them?'. This shows his helplessness and sorrow, not agreement. Joey and Topthorn were 'hauled unwillingly along'[cite: 849]."
+            },
+            {
+                id: 42,
+                question: "Discuss the perception of 'mad old Friedrich' among his fellow soldiers versus his true nature as revealed to Joey and Topthorn. Was he genuinely mentally unstable? [cite: 933, 946, 948, 949]",
+                keywords: ["thought to be mad", "talked continuously to himself", "laughing and chortling", "not in the slightest bit mad", "only sane man", "kind and gentle", "cried out against fighting", "if he did not laugh he would cry"],
+                modelAnswer: "Fellow soldiers thought Friedrich was mad because 'he talked continuously to himself' and was often 'laughing and chortling at some private joke'[cite: 933]. However, Joey soon discovered that Friedrich 'was not in the slightest bit mad, but simply a kind and gentle man whose whole nature cried out against fighting a war'[cite: 946]. Friedrich himself told the horses, 'I tell you that I am the only sane man in the regiment... if I did not laugh he would cry'[cite: 949, 948]."
+            },
+            {
+                id: 43,
+                question: "When Topthorn collapsed and died, did Joey immediately abandon him to save himself from the shelling? Describe Joey's actions and feelings at that moment. [cite: 993, 1023, 1025, 1031, 1033]",
+                keywords: ["would not abandon him", "stay with him", "licking and nuzzling", "grief", "compelled me to stay", "refused to move"],
+                modelAnswer: "No, Joey did not willingly abandon Topthorn when he died, even amidst heavy shelling. He 'would not abandon him'[cite: 1023]. Despite Friedrich's attempts to drag him away to safety, Joey 'did not want to go'[cite: 1025]. He stood by Topthorn and Friedrich 'all that day and into the night,' and his fear was 'overwhelmed by a powerful sense of sadness and love that compelled me to stay with Topthorn for as long as I could'[cite: 1031, 1033]. He was 'still licking and nuzzling him where he lay' in his grief[cite: 993]." // Note: This citation for licking/nuzzling is from the immediate aftermath, before Friedrich's attempts to move him during shelling.
+            },
+            {
+                id: 44,
+                question: "Was the Welsh soldier who played a key role in Joey's rescue from no man's land an officer? Describe his appearance and how he was addressed. [cite: 1106, 1115, 1119, 1160]",
+                keywords: ["small man in khaki", "helmet askew", "not an officer", "boyo", "welshman", "trooper implies non-officer"],
+                modelAnswer: "The Welsh soldier was not an officer. He was described as a 'small, helmeted figure in a flapping khaki greatcoat' [cite: 1106] and a 'small man in khaki... his face red and still smooth with youth, his round helmet... fallen askew'[cite: 1119]. The German soldier referred to him as 'Welshman'[cite: 1160], and the Welshman used the term 'boyo'[cite: 1115], but there is no indication he held an officer's rank. His interactions and speech suggest a common soldier."
+            },
+            {
+                id: 45,
+                question: "Describe Sergeant Thunder's typical demeanor and way of speaking. Was he generally a quiet and mild-mannered NCO? [cite: 1183, 1184, 1190, 1296, 1297, 1509]",
+                keywords: ["booming voice", "striding", "heavy red face", "thundering", "shouted", "gruff", "not quiet", "not mild-mannered"],
+                modelAnswer: "Sergeant Thunder was not a quiet or mild-mannered NCO. He was known for his 'booming voice' that echoed across the courtyard[cite: 1183]. He often 'shouted' and used the word 'thundering' repeatedly in his speech (e.g., 'thundering 'orse,' 'thundering disgrace')[cite: 1184, 1190]. His demeanor was generally gruff, loud, and authoritative, though he also showed a softer side and genuine care for the horses and men when appropriate[cite: 1296, 1297, 1509]."
+            },
+            {
+                id: 46,
+                question: "Did Albert recognize Joey instantly upon Joey's arrival at the veterinary hospital, despite Joey's poor condition? Explain the process of their reunion. [cite: 1189, 1198, 1201, 1202, 1252, 1257, 1262, 1264, 1273, 1274, 1284, 1288]",
+                keywords: ["did not recognize immediately", "voice sent shiver", "could not see his face", "cleaned him up", "pawed the ground", "owl whistle", "it's him"],
+                modelAnswer: "No, Albert did not recognize Joey instantly. Although Joey recognized Albert's voice, which 'sent a sudden shiver of recognition through me'[cite: 1198], Albert was initially focused on cleaning the 'scruffiest, dirtiest, muddiest 'orse'[cite: 1189, 1201-1202]. It was only after his friend David pointed out Joey's four white socks and the white cross on his forehead, after much cleaning, that Albert began to suspect[cite: 1252, 1257, 1262-1264, 1273-1274]. The definitive recognition came when Albert untied Joey, walked away, and then used 'his owl whistle,' the same call from the farm. When Joey trotted to him, Albert knew for sure, exclaiming, 'It's him, David... It's my Joey'[cite: 1284-1288]."
+            },
+            {
+                id: 47,
+                question: "What was Major Martin's initial professional opinion and recommendation regarding Joey's condition when he was diagnosed with tetanus? Was he immediately willing to attempt treatment? [cite: 1342, 1344, 1345, 1346, 1350, 1353]",
+                keywords: ["tetanus", "precious little we can do", "not in his condition", "best to end it quickly", "no point in an animal suffering", "initially unwilling to treat"],
+                modelAnswer: "When Major Martin diagnosed Joey with tetanus, his initial professional opinion was grim. He told Albert, 'there's precious little we can do for him, not in his condition'[cite: 1342]. His initial recommendation was euthanasia: ''Best to end it quickly,' Major Martin said. 'No point in an animal suffering. Better for him, and better for you''[cite: 1344]. He was only persuaded to attempt treatment after the strong pleas from Albert and David, and Sergeant Thunder's interjection about the value of a horse's life and the unit's commitment[cite: 1345, 1346, 1350-1353]."
+            },
+            {
+                id: 48,
+                question: "How was Joey generally regarded by the other soldiers and staff at the veterinary hospital after his rescue and during his recovery? Was he disliked or ignored? [cite: 1294, 1295, 1296, 1297, 1385, 1386]",
+                keywords: ["celebrity", "scarcely ever left alone", "admiringly", "sergeant thunder fondle my ears", "bit special", "willing me to live", "high esteem for albert", "not disliked", "not ignored"],
+                modelAnswer: "Joey was not disliked or ignored; on the contrary, he was regarded as 'something of a celebrity' by the other soldiers and staff[cite: 1294]. He was 'scarcely ever left alone in my stable,' with faces 'looking admiringly over my door'[cite: 1294, 1295]. Even Sergeant Thunder would 'fondle my ears and tickle me under my throat,' calling him a 'Thundering fine horse'[cite: 1296, 1297]. The men, including Major Martin, were 'desperately... willing me to live,' partly for Joey himself and partly because they held Albert in high esteem[cite: 1385, 1386]."
+            },
+            {
+                id: 49,
+                question: "Describe the circumstances of the death of Albert's friend, David. What was the cause, and what impact did it have on Albert? [cite: 1443, 1444, 1453, 1454, 1455, 1462]",
+                keywords: ["david", "killed", "stray shell", "two horses hauling", "inconsolable", "not been himself", "no more singing", "no more whistling", "profound relief but no joy at war's end"],
+                modelAnswer: "Albert's friend, David, was 'killed, along with the two horses that were hauling the veterinary wagon that day'[cite: 1443]. The cause was 'A stray shell'[cite: 1444]. David's death had a profound impact on Albert. Joey observed, 'Since David's death Albert had not been himself. I had not once seen him smile or joke, and he often fell into prolonged brooding silences... There was no more singing, no more whistling. I tried all that I could to comfort him, but he seemed quite inconsolable'[cite: 1453, 1454]. Even the news of the war ending brought 'little joy' to Albert, only a 'sense of profound relief'[cite: 1455, 1462]."
+            },
+            {
+                id: 50,
+                question: "For what exact amount did Emilie's grandfather secure the winning bid for Joey at the auction? Was it twenty-seven English pounds? [cite: 1556, 1557, 1558, 1561]",
+                keywords: ["twenty-eight english pounds", "not twenty-seven", "auctioneer selling at twenty-seven", "grandfather bid twenty-eight"],
+                modelAnswer: "No, Emilie's grandfather did not win Joey for twenty-seven English pounds. The auctioneer was about to sell Joey to Monsieur Cirac for 'twenty-seven English pounds' when Emilie's grandfather interjected with a bid of 'Twenty-eight'[cite: 1556, 1557, 1558]. He then declared he would pay up to one hundred pounds if necessary, effectively ending the bidding[cite: 1561]. So, he secured Joey for twenty-eight English pounds."
+            }
+            // You would continue to add more questions here for 51-100
+        ];
+
+        function displayQuestions() {
+            const quizContainer = document.getElementById('quiz-container');
+            if (!quizContainer) {
+                console.error("Quiz container not found!");
+                return;
+            }
+
+            let html = "";
+            questionsData.forEach(q => {
+                html += `
+                    <div class="question-block" id="qblock-${q.id}">
+                        <p class="question-text"><strong>Question ${q.id}:</strong> ${q.question}</p>
+                        <textarea class="user-answer" rows="7" data-question-id="${q.id}" placeholder="Write your detailed answer here..."></textarea>
+                        <button type="button" class="eval-button" onclick="evaluateQuestion(${q.id})">Evaluate Answer</button>
+                        <div class="feedback-area" id="feedback-${q.id}" style="display:none;">
+                            <h4>Key Concepts / Expected Keywords:</h4>
+                            <ul class="keywords-list">
+                                ${q.keywords.map(kw => `<li>${kw}</li>`).join('')}
+                            </ul>
+                            <h4>Model Answer:</h4>
+                            <p class="model-answer-text">${q.modelAnswer}</p>
+                            <p class="evaluation-note" id="evalnote-${q.id}"></p>
+                        </div>
+                    </div>
+                `;
+            });
+            quizContainer.innerHTML = html;
+        }
+
+        function evaluateQuestion(questionId) {
+            const questionData = questionsData.find(q => q.id === questionId);
+            if (!questionData) {
+                console.error("Question data not found for ID:", questionId);
+                return;
+            }
+
+            const userAnswerTextarea = document.querySelector(`textarea[data-question-id="${questionId}"]`);
+            const feedbackDiv = document.getElementById(`feedback-${questionId}`);
+            const evalNote = document.getElementById(`evalnote-${questionId}`);
+
+            if (!userAnswerTextarea || !feedbackDiv || !evalNote) {
+                console.error("One or more HTML elements not found for question ID:", questionId);
+                return;
+            }
+            const userAnswerText = userAnswerTextarea.value.toLowerCase();
+
+            let keywordsFound = 0;
+            let foundKeywordsList = []; 
+
+            if (questionData.keywords && questionData.keywords.length > 0) {
+                questionData.keywords.forEach(kw => {
+                    if (userAnswerText.includes(kw.toLowerCase())) {
+                        keywordsFound++;
+                        foundKeywordsList.push(kw);
+                    }
+                });
+            }
+
+            let note = "";
+            const keywordPercentage = (questionData.keywords && questionData.keywords.length > 0) ? (keywordsFound / questionData.keywords.length) * 100 : 0;
+
+            if (userAnswerText.trim().length < 20) { 
+                 note = "Your answer is quite brief. Try to elaborate more using details from the text, then compare with the model answer and key concepts.";
+            } else if (keywordsFound === 0 && questionData.keywords && questionData.keywords.length > 0) {
+                note = "Your answer doesn't seem to touch on the main key concepts expected. Please compare it carefully with the model answer to identify areas for improvement.";
+            } else if (keywordPercentage < 40 && questionData.keywords && questionData.keywords.length > 0) {
+                note = `You've touched upon ${keywordsFound} of ${questionData.keywords.length} key concepts. Focus on incorporating more specific details from the story next time. The model answer will be very helpful for this.`;
+            } else if (keywordPercentage < 75 && questionData.keywords && questionData.keywords.length > 0) {
+                note = `Good effort! You've included ${keywordsFound} of ${questionData.keywords.length} key concepts. Compare your phrasing and the depth of your explanation with the model answer to enhance your understanding further.`;
+            } else if (questionData.keywords && questionData.keywords.length > 0 && keywordsFound > 0) { // Ensure keywords exist and at least one is found for "Excellent"
+                note = `Excellent! You've covered ${keywordsFound} of ${questionData.keywords.length} key concepts well. Review the model answer for any minor differences, additional perspectives, or to see how the ideas are woven together.`;
+            } else { 
+                note = "Please attempt an answer. Then, compare your thoughts with the model answer provided, if available.";
+            }
+            
+            evalNote.textContent = note;
+            feedbackDiv.style.display = 'block';
+        }
+
+        document.addEventListener('DOMContentLoaded', displayQuestions);
+    </script>
+</body>
+</html>
